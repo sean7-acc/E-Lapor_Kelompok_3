@@ -5,7 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
   <title>E-Lapor</title>
+  <style>
+  @media (max-width: 768px) {
+  table {
+    font-size: 12px;
+  }
+
+  .table td,
+  .table th {
+    padding: 6px;
+  }
+
+  .badge {
+    font-size: 10px;
+  }
+}
+</style>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
@@ -157,7 +174,6 @@
       <table class="table table-striped table-hover mb-0" id="daftar-laporan">
         <thead class="table-primary">
           <tr>
-            <th>No</th>
             <th>Pelapor</th>
             <th>Isi Laporan</th>
             <th>Tanggal</th>
@@ -166,7 +182,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
             <td>Apriyanto Tagu Bore</td>
             <td>Apa penyebab antrian menjadi panjang? Apakah ada pembatasan kuota bbm untuk wilayah palangkaraya? tolong solusinya! sangat rentan terjadi kekacauan jika terus berlanjut, dampaknya masyarakat disekitarnya (area pom) juga akan terkena dampaknya, tolong secara ditindak lanjutin untuk menyelesaikan permasalahan ini!</td>
             <td>12 April 2026</td>
@@ -175,7 +190,6 @@
             </td>
           </tr>
           <tr>
-            <td>2</td>
             <td>Andreano Tuah</td>
             <td>Tolong dibersihkan tumpahan solar di jalan lingkar luar.</td>
             <td>10 April 2026</td>
@@ -184,7 +198,6 @@
             </td>
           </tr>
           <tr>
-            <td>3</td>
             <td>Sean Joses Emanuel</td>
             <td>Tolong dikondisikan, di jalan garuda induk banyak pengendara motor ugal-ugalan saat masuk jam malam.</td>
             <td>30 Maret 2026</td>
@@ -193,7 +206,6 @@
             </td>
           </tr>
           <tr>
-            <td>4</td>
             <td>Joe Gamaniel Dinata</td>
             <td>Lampu rambu lalu lintas di jalan garuda induk sudah tidak berfungsi selama 5 hari, tolong diselesaikan!</td>
             <td>19 Maret 2026</td>
@@ -217,5 +229,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
