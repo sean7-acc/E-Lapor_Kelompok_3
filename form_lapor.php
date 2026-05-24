@@ -109,9 +109,9 @@
               <label class="form-label fw-semibold">
                 Isi Laporan
               </label>
-              <textarea class="form-control" name="isi_laporan" rows="5" placeholder="Jelaskan permasalahan yang ingin dilaporkan dengan detail..."></textarea>
-              <div class="form-text">
-                Minimal 20 karakter.
+              <textarea class="form-control" name="isi_laporan" id="isi_laporan" rows="5" placeholder="Jelaskan permasalahan yang ingin dilaporkan dengan detail..." required></textarea>
+              <div id="error-laporan" class="text-danger mt-1" style="display:none;">
+                <i class="bi bi-exclamation-circle me-1"></i>Minimal 20 karakter!
               </div>
             </div>
             <!-- FILE -->
@@ -121,7 +121,7 @@
               </label>
               <input class="form-control" type="file" name="foto_bukti" accept="image/*">
               <div class="form-text">
-                Format JPG, PNG, atau WEBP.
+                Format JPG, JPEG atau PNG.
               </div>
             </div>
             <!-- BUTTON -->
