@@ -75,7 +75,7 @@
         <i class="bi bi-info-circle-fill"></i>
         <div>
           <strong>Petunjuk Pengisian:</strong>
-          Pastikan nama pelapor wajib terisi (<span class="text-danger">*</span>). Isi laporan dengan jelas & sertakan bukti foto agar dapat segera ditindak lanjuti.
+          Pastikan nama pelapor wajib terisi. Isi laporan dengan jelas & sertakan bukti foto agar dapat segera ditindak lanjuti.
         </div>
       </div>
 
@@ -92,7 +92,6 @@
             <div class="mb-4">
               <label class="form-label fw-semibold">
                 Nama Pelapor
-                <span class="text-danger">*</span>
               </label>
               <div class="input-group">
                 <span class="input-group-text">
