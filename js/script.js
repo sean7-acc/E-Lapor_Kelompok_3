@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const inputLaporan = document.getElementById('isi_laporan');
   const errorLaporan = document.getElementById('error-laporan');
 
- 
+  
   if (form && btnKirim) {
 
     
     btnKirim.addEventListener('click', function (e) {
 
-     
+      
       const namaNilai = inputNama ? inputNama.value.trim() : '';
 
       if (namaNilai === '') {
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         
         if (inputNama) inputNama.focus();
-        return; 
+        return;
       } else {
-       
+        
         if (inputNama) inputNama.classList.remove('is-invalid');
         if (errorNama) errorNama.style.display = 'none';
       }
@@ -64,16 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
       }
 
-     
+      
       const konfirmasi = confirm(
         'Apakah Anda yakin data laporan sudah benar?\n\n'
       );
 
       if (!konfirmasi) {
-       
+        
         e.preventDefault();
       }
-     
+      
 
     });
 
@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   
+  if (inputLaporan) {
   inputLaporan.addEventListener('input', function () {
     if (this.value.trim().length >= 20) {
       this.classList.remove('is-invalid');
