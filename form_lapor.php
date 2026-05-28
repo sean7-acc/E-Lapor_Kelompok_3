@@ -87,7 +87,7 @@
             Data Laporan
           </h4>
 
-          <form action="proses_lapor.php" method="POST" enctype="multipart/form-data" id="formLapor">
+          <form action="proses_simpan.php" method="POST" enctype="multipart/form-data" id="formLapor">
             <!-- NAMA -->
             <div class="mb-4">
               <label class="form-label fw-semibold">
