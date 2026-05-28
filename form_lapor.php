@@ -1,3 +1,9 @@
+<?php
+include 'koneksi.php';
+
+$query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
