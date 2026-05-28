@@ -1,3 +1,37 @@
+<?php
+include 'koneksi.php';
+
+$query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
+
+// untuk card laporan terbaru
+$queryCard = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC LIMIT 3");
+
+// total laporan
+$totalLaporan = mysqli_query(
+    $koneksi,
+    "SELECT COUNT(*) AS total FROM laporan"
+);
+$totalLaporan = mysqli_fetch_assoc($totalLaporan);
+
+// laporan selesai
+$totalSelesai = mysqli_query(
+    $koneksi,
+    "SELECT COUNT(*) AS total 
+     FROM laporan 
+     WHERE status='Selesai'"
+);
+$totalSelesai = mysqli_fetch_assoc($totalSelesai);
+
+// laporan diproses
+$totalDiproses = mysqli_query(
+    $koneksi,
+    "SELECT COUNT(*) AS total 
+     FROM laporan 
+     WHERE status='Proses'"
+);
+$totalDiproses = mysqli_fetch_assoc($totalDiproses);
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -92,17 +126,17 @@
   <div class="container">
     <div class="row text-center">
       <div class="col-4">
-        <h2 class="fw-bold text-primary">4</h2>
+        <h2 class="fw-bold text-primary"><?= $totalLaporan['total']; ?></h2>
         <small class="text-muted">Total Laporan</small>
       </div>
 
       <div class="col-4">
-        <h2 class="fw-bold text-success">2</h2>
+        <h2 class="fw-bold text-success"><?= $totalSelesai['total']; ?></h2>
         <small class="text-muted">Selesai</small>
       </div>
 
       <div class="col-4">
-        <h2 class="fw-bold text-warning">1</h2>
+        <h2 class="fw-bold text-warning"><?= $totalDiproses['total']; ?></h2>
         <small class="text-muted">Diproses</small>
       </div>
     </div>
@@ -112,60 +146,45 @@
 <div class="container my-5">
   <h3 class="fw-bold mb-4">Laporan Terbaru</h3>
   <div class="row g-4 mb-5">
+    <?php
+    while ($card = mysqli_fetch_assoc($queryCard)) {
 
+        // badge status
+        if ($card['status'] == 'Baru') {
+            $badge = 'bg-primary';
+        } elseif ($card['status'] == 'Proses') {
+            $badge = 'bg-warning text-dark';
+        } else {
+            $badge = 'bg-success';
+        }
+
+        echo '
     <div class="col-md-4">
       <div class="card shadow h-100">
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between mb-3">
-            <span class="badge bg-primary">Baru</span>
-            <small class="text-muted">12 April 2026</small>
+            <span class="badge ' . $badge . '">
+            ' . $card['status'] . '
+            </span>
+            <small class="text-muted">
+            ' . date('d F Y', strtotime($card['tanggal'])) . '
+            </small>
           </div>
           <p class="text-muted">
-            Apa penyebab antrian menjadi panjang? Apakah ada pembatasan kuota bbm untuk wilayah palangkaraya? tolong solusinya! sangat rentan terjadi kekacauan jika terus berlanjut, dampaknya masyarakat disekitarnya (area pom) juga akan terkena dampaknya, tolong secara ditindak lanjutin untuk menyelesaikan permasalahan ini!
+          ' . substr($card['isi_laporan'], 0, 120) . '
           </p>
           <div class="mt-auto">
             <i class="bi bi-person-circle me-2"></i>
-            <small class="text-muted">Apriyanto Tagu Bore</small>
+            <small class="text-muted">
+            ' . $card['nama_pelapor'] . '
+            </small>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-4">
-      <div class="card shadow h-100">
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between mb-3">
-            <span class="badge bg-warning text-dark">Diproses</span>
-            <small class="text-muted">10 April 2026</small>
-          </div>
-          <p class="text-muted">
-            Tolong dibersihkan tumpahan solar di jalan lingkar luar.
-          </p>
-          <div class="mt-auto">
-            <i class="bi bi-person-circle me-2"></i>
-            <small class="text-muted">Andreano Tuah</small>
-          </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card shadow h-100">
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between mb-3">
-            <span class="badge bg-success">Selesai</span>
-            <small class="text-muted">30 Maret 2026</small>
-          </div>
-          <p class="text-muted">
-            Tolong dikondisikan, di jalan garuda induk banyak pengendara motor ugal-ugalan saat masuk jam malam.
-          </p>
-          <div class="mt-auto">
-            <i class="bi bi-person-circle me-2"></i>
-            <small class="text-muted">Sean Joses Emanuel</small>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div>';
+    }
+    ?>
   </div>
 
   <h3 class="fw-bold mb-4">Semua Laporan</h3>
@@ -181,70 +200,32 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Apriyanto Tagu Bore</td>
-            <td>Apa penyebab antrian menjadi panjang? Apakah ada pembatasan kuota bbm untuk wilayah palangkaraya? tolong solusinya! sangat rentan terjadi kekacauan jika terus berlanjut, dampaknya masyarakat disekitarnya (area pom) juga akan terkena dampaknya, tolong secara ditindak lanjutin untuk menyelesaikan permasalahan ini!</td>
-            <td>12 April 2026</td>
-            <td>
-              <span class="badge bg-primary">Baru</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Andreano Tuah</td>
-            <td>Tolong dibersihkan tumpahan solar di jalan lingkar luar.</td>
-            <td>10 April 2026</td>
-            <td>
-              <span class="badge bg-warning text-dark">Proses</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Sean Joses Emanuel</td>
-            <td>Tolong dikondisikan, di jalan garuda induk banyak pengendara motor ugal-ugalan saat masuk jam malam.</td>
-            <td>30 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Joe Gamaniel Dinata</td>
-            <td>Lampu rambu lalu lintas di jalan garuda induk sudah tidak berfungsi selama 5 hari, tolong diselesaikan!</td>
-            <td>19 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
-          <tr>
-            <td>budi</td>
-            <td>Lampu rambu lalu lintas di jalan keminting sudah tidak berfungsi selama 5 hari, tolong diselesaikan!</td>
-            <td>10 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
-          <tr>
-            <td>bambang</td>
-            <td>Lampu rambu lalu lintas di jalan rajawali induk sudah tidak berfungsi selama 5 hari, tolong diselesaikan!</td>
-            <td>11 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
-          <tr>
-            <td>ayu</td>
-            <td>Lampu rambu lalu lintas di jalan tjilik riwut kilometer 7 sudah tidak berfungsi selama 5 hari, tolong diselesaikan!</td>
-            <td>12 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
-          <tr>
-            <td>itin</td>
-            <td>Banyak sudah banyak jalan berlubang di jalan bukit keminting, tolong ditambahl!</td>
-            <td>13 Maret 2026</td>
-            <td>
-              <span class="badge bg-success">Selesai</span>
-            </td>
-          </tr>
+          <?php while($row = mysqli_fetch_assoc($query)) : ?>
+            <tr>
+              <td><?= $row['nama_pelapor']; ?></td>
+              <td><?= $row['isi_laporan']; ?></td>
+              <td>
+                <?= date('d F Y', strtotime($row['tanggal'])); ?>
+              </td>
+              <td>
+                <?php if($row['status'] == 'Baru') : ?>
+                  <span class="badge bg-primary">
+                    <?= $row['status']; ?>
+                  </span>
+
+                  <?php elseif($row['status'] == 'Proses') : ?>
+                    <span class="badge bg-warning text-dark">
+                      <?= $row['status']; ?>
+                    </span>
+
+                    <?php else : ?>
+                      <span class="badge bg-success">
+                        <?= $row['status']; ?>
+                      </span>
+                      <?php endif; ?>
+                    </td>
+                  </tr>
+                  <?php endwhile; ?>
         </tbody>
       </table>
     </div>
