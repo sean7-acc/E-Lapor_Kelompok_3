@@ -186,50 +186,6 @@ $totalDiproses = mysqli_fetch_assoc($totalDiproses);
     }
     ?>
   </div>
-
-  <h3 class="fw-bold mb-4">Semua Laporan</h3>
-  <div class="card shadow">
-    <div class="table-responsive">
-      <table class="table table-striped table-hover mb-0" id="daftar-laporan">
-        <thead class="table-primary">
-          <tr>
-            <th>Pelapor</th>
-            <th>Isi Laporan</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php while($row = mysqli_fetch_assoc($query)) : ?>
-            <tr>
-              <td><?= $row['nama_pelapor']; ?></td>
-              <td><?= $row['isi_laporan']; ?></td>
-              <td>
-                <?= date('d F Y', strtotime($row['tanggal'])); ?>
-              </td>
-              <td>
-                <?php if($row['status'] == 'Baru') : ?>
-                  <span class="badge bg-primary">
-                    <?= $row['status']; ?>
-                  </span>
-
-                  <?php elseif($row['status'] == 'Proses') : ?>
-                    <span class="badge bg-warning text-dark">
-                      <?= $row['status']; ?>
-                    </span>
-
-                    <?php else : ?>
-                      <span class="badge bg-success">
-                        <?= $row['status']; ?>
-                      </span>
-                      <?php endif; ?>
-                    </td>
-                  </tr>
-                  <?php endwhile; ?>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 <footer class="bg-dark text-white text-center py-4">
