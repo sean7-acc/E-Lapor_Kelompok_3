@@ -23,7 +23,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="index.php">
+    <a class="navbar-brand fw-bold" href="dasbor.php">
       <i class="bi bi-megaphone-fill me-2"></i>
       E-Lapor
     </a>
@@ -35,7 +35,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="dasbor.php">
             <i class="bi bi-house-door me-1"></i>
             Beranda
           </a>
@@ -49,7 +49,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="index.php#daftar-laporan">
+          <a class="nav-link" href="daftar_laporan.php">
             <i class="bi bi-list-ul me-1"></i>
             Daftar Laporan
           </a>
