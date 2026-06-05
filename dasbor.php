@@ -100,6 +100,14 @@ $totalDiproses = mysqli_fetch_assoc($totalDiproses);
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link text-warning" 
+          href="logout.php"
+          onclick="return confirm('Yakin ingin logout?')">
+          <i class="bi bi-box-arrow-right me-1"></i>
+          Logout
+        </a>
+
       </ul>
     </div>
   </div>
