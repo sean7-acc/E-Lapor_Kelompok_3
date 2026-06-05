@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
+    header("location:index.php?error=akses");
+    exit;
+  }
+  
 include 'koneksi.php';
 
 $query = mysqli_query($koneksi, "SELECT * FROM laporan ORDER BY id DESC");
