@@ -189,7 +189,7 @@ $totalDiproses = mysqli_fetch_assoc($totalDiproses);
         <?php endif; ?>
     </td>
     <td>
-        <a href="proses_edit.php?id=<?= $row['id']; ?>" 
+        <a href="form_edit.php?id=<?= $row['id']; ?>" 
            class="btn btn-warning btn-sm">
             <i class="bi bi-pencil-square"></i>
         </a>
